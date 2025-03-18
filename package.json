@@ -4,13 +4,19 @@
   "private": true,
   "dependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 979c37f (first commit)
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.7",
     "@mui/styled-engine-sc": "^6.4.6",
+<<<<<<< HEAD
 =======
 >>>>>>> 0cd4a53 (Initialize project using Create React App)
+=======
+>>>>>>> 979c37f (first commit)
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
@@ -18,12 +24,18 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-router-dom": "^7.3.0",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.15",
 =======
     "react-scripts": "5.0.1",
 >>>>>>> 0cd4a53 (Initialize project using Create React App)
+=======
+    "react-router-dom": "^7.3.0",
+    "react-scripts": "5.0.1",
+    "styled-components": "^6.1.15",
+>>>>>>> 979c37f (first commit)
     "web-vitals": "^2.1.4"
   },
   "scripts": {
