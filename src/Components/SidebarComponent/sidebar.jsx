@@ -17,13 +17,13 @@ import {
   Settings as SettingsIcon,
   Payment as PaymentIcon,
   HelpOutline as HelpIcon,
-  ExitToApp as LogoutIcon,
   ChevronRight as RightArrowIcon,
 } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
     { text: "Home", icon: <HomeIcon />, path: "/home" },
@@ -34,7 +34,6 @@ const Sidebar = () => {
     { text: "App Settings", icon: <SettingsIcon />, path: "/app-settings" },
     { text: "Transactions", icon: <PaymentIcon />, path: "/transactions" },
     { text: "Help & Support", icon: <HelpIcon />, path: "/help-support" },
-    { text: "Logout", icon: <LogoutIcon />, path: "/logout" },
   ];
 
   const handleNavigate = (path) => {
@@ -44,27 +43,45 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
-        width: 250,
+        width: 260,
         height: "100vh",
         backgroundColor: "#fff",
-        boxShadow: "2px 0 10px rgba(0,0,0,0.1)",
+        boxShadow: "5px 0 10px rgba(44, 13, 156, 0.1)",
         transition: "width 0.3s",
+        borderRight: "3px solid rgba(0, 0, 0, 0.1)",
       }}
     >
+      {/* Profile Section */}
       <Box sx={{ p: 2, textAlign: "center", display: "flex", alignItems: "center" }}>
-  <Avatar src="/path/to/profile.jpg" sx={{ width: 50, height: 50, mr: 2 }} />
-  <Typography fontWeight="bold" fontSize="16px">John Doe</Typography>
-</Box>
-
+        <Avatar src="/path/to/profile.jpg" sx={{ width: 50, height: 50, mr: 2 }} />
+        <Typography fontWeight="bold" fontSize="16px">John Doe</Typography>
+      </Box>
 
       <Divider />
 
-      <List>
+      {/* Sidebar Menu with Spacing */}
+      <List sx={{  gap: 2, display: "flex", flexDirection: "column" }}> {/* Added gap here */}
         {menuItems.map((item, index) => (
-          <ListItem button key={index} sx={{ py: 1.5 }} onClick={() => handleNavigate(item.path)}>
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} />
-            <RightArrowIcon />
+          <ListItem
+            button
+            key={index}
+            onClick={() => handleNavigate(item.path)}
+            sx={{
+              py: 1.5,
+              backgroundColor: location.pathname === item.path ? "#1B88CA" : "transparent",
+              color: location.pathname === item.path ? "white" : "black",
+              borderRadius: "5px",
+              "&:hover": {
+                backgroundColor: "#5AAFE6",
+                color: "white",
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: location.pathname === item.path ? "white" : "black" }}>
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText primary={item.text} sx={{ fontWeight: "bold" }} /> {/* Bold text */}
+            <RightArrowIcon sx={{ color: location.pathname === item.path ? "white" : "black" }} />
           </ListItem>
         ))}
       </List>

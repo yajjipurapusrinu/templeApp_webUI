@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -18,6 +18,7 @@ import Logo from "../../Images/logo.jpg";
 
 const Navbar = ({ toggleSidebar, hideMenuIcon }) => {
   const navigate = useNavigate();
+  const location = useLocation(); // Get current path
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -29,20 +30,22 @@ const Navbar = ({ toggleSidebar, hideMenuIcon }) => {
       sx={{
         backgroundColor: "#fff",
         color: "#000",
-        height: 100,
+        height: 100, // Increased height for better spacing
         boxShadow: "none",
         zIndex: 1000,
-        width: hideMenuIcon ? "calc(100% - 250px)" : "calc(100% - 0px)",
+        width: hideMenuIcon ? "calc(100% - 260px)" : "100%",
         transition: "width 0.3s",
+        display: "flex",
+        justifyContent: "center",
       }}
     >
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "100%" }}>
         {/* Left Side: Menu Icon and Logo */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <IconButton onClick={toggleSidebar} sx={{ fontSize: "2.5rem" }}>
+          <IconButton onClick={toggleSidebar} sx={{ fontSize: "3rem" }}>
             <MenuIcon fontSize="inherit" />
           </IconButton>
-          <img src={Logo} alt="Logo" style={{ width: "100px", height: "50px" }} />
+          <img src={Logo} alt="Logo" style={{ width: "120px", height: "60px" }} />
         </Box>
 
         {/* Center: Search Bar */}
@@ -62,18 +65,36 @@ const Navbar = ({ toggleSidebar, hideMenuIcon }) => {
         </Box>
 
         {/* Right Side: Links, Notification, and Profile */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
-          <Typography sx={{ cursor: "pointer" }} onClick={() => handleNavigation("/home")}>Home</Typography>
-          <Typography sx={{ cursor: "pointer" }} onClick={() => handleNavigation("/add-task")}>Add Task</Typography>
-          <Typography sx={{ cursor: "pointer" }} onClick={() => handleNavigation("/my-tasks")}>My Task</Typography>
-          <Typography sx={{ cursor: "pointer" }} onClick={() => handleNavigation("/my-bids")}>My Bids</Typography>
-          <Typography sx={{ cursor: "pointer" }} onClick={() => handleNavigation("/filters")}>Filter</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
+          {[
+            { label: "Home", path: "/home" },
+            { label: "Add Task", path: "/add-task" },
+            { label: "My Task", path: "/my-tasks" },
+            { label: "My Bids", path: "/my-bids" },
+            { label: "Filter", path: "/filters" },
+          ].map((item) => (
+            <Typography
+            key={item.path}
+            onClick={() => handleNavigation(item.path)}
+            sx={{
+              cursor: "pointer",
+              fontWeight: "bold", // Always bold
+              color: location.pathname === item.path ? "#1B88CA" : "black", // Active color
+              fontSize: "1 rem",
+              transition: "color 0.3s ease",
+            }}
+          >
+            {item.label}
+          </Typography>
+          
+
+          ))}
           <IconButton color="inherit">
             <Badge badgeContent={4} color="error">
-              <NotificationsIcon />
+              <NotificationsIcon sx={{ fontSize: "2rem" }} />
             </Badge>
           </IconButton>
-          <Avatar alt="Profile" src="/path/to/profile.jpg" />
+          <Avatar alt="Profile" src="/path/to/profile.jpg" sx={{ width: 50, height: 50 }} />
         </Box>
       </Toolbar>
     </AppBar>

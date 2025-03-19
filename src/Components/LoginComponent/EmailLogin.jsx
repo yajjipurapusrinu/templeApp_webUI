@@ -21,7 +21,7 @@ const EmailLoginPage = () => {
 
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
-      <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={6} component={Paper} elevation={0} square>
         <Box
           sx={{
             my: 8,
@@ -29,6 +29,7 @@ const EmailLoginPage = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
+            boxShadow: "none", // Remove box shadow
           }}
         >
           <img
@@ -79,7 +80,7 @@ const EmailLoginPage = () => {
         </Box>
       </Grid>
 
-      <Grid item xs={false} sm={4} md={6} sx={{ p: 0 }}>
+      <Grid item xs={false} sm={4} md={6} sx={{ py: 2 }}>
         <div
           style={{
             backgroundImage: `url(${LoginImage})`,

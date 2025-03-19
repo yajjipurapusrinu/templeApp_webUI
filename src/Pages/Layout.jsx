@@ -5,7 +5,6 @@ import Sidebar from "../Components/SidebarComponent/sidebar";
 
 const Layout = () => {
   const location = useLocation();
-
   const [openSidebar, setOpenSidebar] = useState(false); // Default sidebar hidden
 
   const toggleSidebar = () => {
@@ -13,32 +12,53 @@ const Layout = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
       {/* Sidebar */}
       <div
         style={{
-          width: openSidebar ? "250px" : "0px",
-          transition: "width 0.3s",
-          overflow: "hidden",
-          position: openSidebar ? "fixed" : "relative",
+          width: openSidebar ? "260px" : "0px",
+          transition: "width 0.3s ease-in-out",
+          position: "fixed",
           zIndex: 1000,
           height: "100vh",
+          overflowY: "auto", // Enable scrolling inside sidebar
+          backgroundColor: "#fff",
+          left: 0, // Ensures sidebar stays on the left
+          overflowX: "hidden", // Prevents horizontal scrolling
         }}
       >
-        <Sidebar />
+        <Sidebar isOpen={openSidebar} />
       </div>
 
       {/* Navbar and Main Content */}
       <div
         style={{
           flex: 1,
-          transition: "margin-left 0.3s",
-          marginLeft: openSidebar ? "250px" : "0px",
-          width: openSidebar ? "calc(100% - 250px)" : "100%",
+          transition: "margin-left 0.3s ease-in-out",
+          marginLeft: openSidebar ? "260px" : "0",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          height: "100vh",
+          overflowX: "hidden", // Ensures no horizontal scrolling
         }}
       >
-        <Navbar toggleSidebar={toggleSidebar} hideMenuIcon={openSidebar} />
-        <div style={{ padding: "20px", marginTop: "100px" }}>
+        {/* Navbar - Fixed at Top */}
+        <div style={{ position: "fixed", width: "100%", zIndex: 1000 }}>
+          <Navbar toggleSidebar={toggleSidebar} hideMenuIcon={openSidebar} />
+        </div>
+
+        {/* Main Content - Scrollable */}
+        <div
+          style={{
+            flex: 1,
+            overflowY: "auto", // Enables vertical scrolling
+            padding: "10px",
+            marginTop: "60px", // Adjust for navbar height
+            height: "100vh",
+            overflowX: "hidden", // Prevents horizontal scrolling on content
+          }}
+        >
           <Outlet />
         </div>
       </div>
