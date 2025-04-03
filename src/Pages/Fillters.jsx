@@ -1,8 +1,12 @@
 import React from 'react'
+import FiltersComponent from "../Components/Filters/Filters";
+
 
 function Fillters() {
   return (
-    <div>Fillters</div>
+    <div>
+      <FiltersComponent/>
+    </div>
   )
 }
 

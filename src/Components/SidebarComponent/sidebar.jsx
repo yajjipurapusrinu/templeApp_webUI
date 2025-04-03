@@ -26,15 +26,16 @@ const Sidebar = () => {
   const location = useLocation();
 
   const menuItems = [
-    { text: "Home", icon: <HomeIcon />, path: "/home" },
-    { text: "Add Task", icon: <TaskIcon />, path: "/add-task" },
-    { text: "All Task", icon: <ListAltIcon />, path: "/all-tasks" },
-    { text: "My Bids", icon: <GavelIcon />, path: "/my-bids" },
-    { text: "Profile", icon: <PersonIcon />, path: "/profile" },
-    { text: "App Settings", icon: <SettingsIcon />, path: "/app-settings" },
-    { text: "Transactions", icon: <PaymentIcon />, path: "/transactions" },
-    { text: "Help & Support", icon: <HelpIcon />, path: "/help-support" },
+    { text: "Home", icon: <HomeIcon />, path: "/dashboard/home" },
+    { text: "Add Task", icon: <TaskIcon />, path: "/dashboard/add-task" },
+    { text: "All Tasks", icon: <ListAltIcon />, path: "/dashboard/all-tasks" },
+    { text: "My Bids", icon: <GavelIcon />, path: "/dashboard/my-bids" },
+    { text: "Profile", icon: <PersonIcon />, path: "/dashboard/profile" },
+    { text: "App Settings", icon: <SettingsIcon />, path: "/dashboard/app-settings" },
+    { text: "Transactions", icon: <PaymentIcon />, path: "/dashboard/transactions" },
+    { text: "Help & Support", icon: <HelpIcon />, path: "/dashboard/help-support" },
   ];
+  
 
   const handleNavigate = (path) => {
     navigate(path);
@@ -54,7 +55,7 @@ const Sidebar = () => {
       {/* Profile Section */}
       <Box sx={{ p: 2, textAlign: "center", display: "flex", alignItems: "center" }}>
         <Avatar src="/path/to/profile.jpg" sx={{ width: 50, height: 50, mr: 2 }} />
-        <Typography fontWeight="bold" fontSize="16px">John Doe</Typography>
+        <Typography fontWeight="bold" fontSize="16px">Ayaan</Typography>
       </Box>
 
       <Divider />

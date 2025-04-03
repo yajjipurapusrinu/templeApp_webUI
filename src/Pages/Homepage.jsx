@@ -1,15 +1,11 @@
 import React from "react";
-import HomeImage from "../Images/home.jpg";
+import HomePage from "../Components/HomePage/HomepageComponent";
 
 function Homepage() {
   return (
     <div>
-    
-      <img 
-        src={HomeImage} 
-        alt="Home" 
-        style={{ width: "100%",  height: "auto", borderRadius: "10px" }} 
-      />
+    <HomePage/>
+      
     </div>
   );
 }

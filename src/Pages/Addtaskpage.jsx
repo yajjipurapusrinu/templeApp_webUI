@@ -1,8 +1,11 @@
 import React from 'react'
+import AddTaskComponent from "../Components/AddTasks/AddTask";
 
 function Addtaskpage() {
   return (
-    <div>Addtaskpage</div>
+    <div>
+      <AddTaskComponent/>
+    </div>
   )
 }
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Typography, Box, Grid, Paper, TextField } from "@mui/material";
 import LoginImage from "../../Images/laginpageImage.jpg";
 import Logo from "../../Images/logo.jpg";
@@ -6,6 +7,8 @@ import Logo from "../../Images/logo.jpg";
 const OtpSendpage = () => {
   const [otp, setOtp] = useState(['', '', '', '']);
   const [timer, setTimer] = useState(30);
+  const navigate = useNavigate();
+
 
   // Countdown timer logic
   useEffect(() => {
@@ -30,6 +33,7 @@ const OtpSendpage = () => {
   const handleResend = () => {
     setTimer(30);
     setOtp(['', '', '', '']); // Clear OTP inputs
+    // navigate("/dashboard/home"); // Redirect to Layout Page
   };
 
   return (
@@ -93,9 +97,14 @@ const OtpSendpage = () => {
             </Typography>
           )}
 
-          <Button variant="contained" color="primary" sx={{ mt: 4, width: "100%" }}>
-            Continue
-          </Button>
+<Button
+      variant="contained"
+      color="primary"
+      sx={{ mt: 4, width: "100%" }}
+      onClick={() => navigate("/dashboard/home")}
+    >
+      Continue
+    </Button>
         </Box>
       </Grid>
 

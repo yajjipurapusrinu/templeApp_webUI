@@ -67,11 +67,11 @@ const Navbar = ({ toggleSidebar, hideMenuIcon }) => {
         {/* Right Side: Links, Notification, and Profile */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
           {[
-            { label: "Home", path: "/home" },
-            { label: "Add Task", path: "/add-task" },
-            { label: "My Task", path: "/my-tasks" },
-            { label: "My Bids", path: "/my-bids" },
-            { label: "Filter", path: "/filters" },
+           { label: "Home", path: "/dashboard/home" },
+           { label: "Add Task", path: "/dashboard/add-task" },
+           { label: "My Task", path: "/dashboard/my-tasks" },
+           { label: "My Bids", path: "/dashboard/my-bids" },
+           { label: "Filter", path: "/dashboard/filters" },
           ].map((item) => (
             <Typography
             key={item.path}

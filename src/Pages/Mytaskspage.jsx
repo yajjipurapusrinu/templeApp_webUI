@@ -1,8 +1,12 @@
 import React from 'react'
+import MyTaskComponent from "../Components/MyTasks/Mytask";
+
 
 function Mytaskspage() {
   return (
-    <div>Mytaskspage</div>
+    <div>
+      <MyTaskComponent/>
+    </div>
   )
 }
 

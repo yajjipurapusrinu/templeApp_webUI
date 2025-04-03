@@ -13,7 +13,7 @@ const EmailLoginPage = () => {
     // Check for valid credentials (You can replace this with API call)
     if (email === "admin@gmail.com" && password === "123456") {
       localStorage.setItem("token", "userToken"); // Storing token
-      navigate("/home"); // Redirect to Layout Page
+      navigate("/dashboard/home"); // Redirect to Layout Page
     } else {
       alert("Invalid Credentials!");
     }

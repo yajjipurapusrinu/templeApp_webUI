@@ -1,8 +1,12 @@
 import React from 'react'
+import MyBidsTaskComponent from "../Components/MyBids/MyBids";
+
 
 function MyBids() {
   return (
-    <div>MyBids</div>
+    <div>
+      <MyBidsTaskComponent/>
+    </div>
   )
 }
 
