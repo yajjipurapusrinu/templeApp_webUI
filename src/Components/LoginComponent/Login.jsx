@@ -1,62 +1,79 @@
-import { Button, Typography, Box, Grid, Paper } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import LoginImage from '../../Images/laginpageImage.jpg';
-import Logo from '../../Images/logo.jpg';
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import templeImage from '../../Images/RegisterImage.jpg'; // Adjust path as needed
+import RegisterFrom from '../../Components/LoginComponent/LoginForm'; 
+import Footer from '../../Components/Footer/Footer'; 
 
-const LoginPage = () => {
-  const navigate = useNavigate();
 
+
+const RegisterBanner = () => {
   return (
-    <Grid container component="main" sx={{ height: '100vh' ,    boxShadow: "none",}}>
-      <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
-        <Box sx={{ my: 8, mx: 15, display: 'flex', flexDirection: 'column', alignItems: 'left',    boxShadow: "none", }}>
-          <img src={Logo} alt="Logo" style={{ width: '150px', marginBottom: '20px' }} />
-          <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2 }}>Welcome Back!</Typography>
-          <Typography variant="body1" sx={{ mb: 3 }}>
-            Don’t have an account <span style={{ color: '#007bff', cursor: 'pointer' }}>Create now</span>
-          </Typography>
-
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: '#007bff', color: 'white', mb: 2, width: '100%' }}
-            onClick={() => navigate('/email-login')}
-          >
-            Login Email
-          </Button>
-
-          <Typography variant="body2" sx={{ textAlign: 'center', mb: 2 }}>OR</Typography>
-
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: '#007bff', color: 'white', mb: 2, width: '100%' }}
-            onClick={() => navigate('/phone-login')}
-          >
-            Login Phone Number
-          </Button>
-
-          <Typography variant="body2" sx={{ textAlign: 'center', mt: 6 }}>
-            Create New Account? <span style={{ color: '#007bff', cursor: 'pointer' }}>Sign up</span>
-          </Typography>
-        </Box>
-      </Grid>
-
-      <Grid item xs={false} sm={4} md={6} sx={{ p: 0 }}>
-        <div
-          style={{
-            backgroundImage: `url(${LoginImage})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: '#f5f5f5',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            borderRadius: '25px',
-            height: '95%',
-            width: '85%',
-            boxShadow: "none",
+    <Box
+      sx={{
+        backgroundColor: 'black',   // 💥 Set entire page background
+        minHeight: '100vh',         // 💥 Make sure it covers full viewport height
+        color: 'white',             // Default text color
+        px: 2,                      // Optional padding
+        py: 4,
+      }}
+    >
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          height: { xs: 300, sm: 400, md: 500 },
+          borderRadius: 4,
+          overflow: 'hidden',
+          mb: 2,
+        }}
+      >
+        {/* Background Image */}
+        <Box
+          component="img"
+          src={templeImage}
+          alt="Temple"
+          sx={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
           }}
         />
-      </Grid>
-    </Grid>
+
+        {/* Overlay */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            px: 2,
+          }}
+        >
+          <Typography variant="h2" sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', sm: '3rem', md: '4rem' } }}>
+            Log In
+          </Typography>
+          <Typography variant="h6" sx={{ maxWidth: '800px', mt: 2 }}>
+            Witness the grandeur of Koti Lingas symbolizing eternity and infinite power.
+          </Typography>
+        </Box>
+      </Box>
+<Box sx={{mb:5}}>
+  <RegisterFrom/>
+</Box>
+<Box >
+  <Footer/>
+</Box>
+      {/* You can place the registration form here if needed */}
+    </Box>
   );
 };
 
-export default LoginPage;
+export default RegisterBanner;

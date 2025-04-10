@@ -1,103 +1,135 @@
-import { useNavigate, useLocation } from "react-router-dom";
+// Navbar.jsx
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
-  IconButton,
   Typography,
   Box,
-  InputBase,
   Avatar,
-  Badge,
+  Chip,
 } from "@mui/material";
-import {
-  Menu as MenuIcon,
-  Search as SearchIcon,
-  Notifications as NotificationsIcon,
-} from "@mui/icons-material";
-import Logo from "../../Images/logo.jpg";
 
-const Navbar = ({ toggleSidebar, hideMenuIcon }) => {
+
+import Logo from "../../Images/Kotilinga Temple Logo 1.png";
+
+const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Get current path
+  const location = useLocation();
+  const [userData, setUserData] = useState(localStorage.getItem("userData"));
+
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    setUserData(storedUserData);
+  }, []);
+
+console.log("++++++++++++++++>",userData)
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUserData(null);
+    navigate("/home");
+  };
+
+  const handleProfileNavigate = () => {
+    navigate("/profile");
+  };
 
   const handleNavigation = (path) => {
     navigate(path);
   };
 
-  return (
-    <AppBar
-      position="fixed"
-      sx={{
-        backgroundColor: "#fff",
-        color: "#000",
-        height: 100, // Increased height for better spacing
-        boxShadow: "none",
-        zIndex: 1000,
-        width: hideMenuIcon ? "calc(100% - 260px)" : "100%",
-        transition: "width 0.3s",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "100%" }}>
-        {/* Left Side: Menu Icon and Logo */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <IconButton onClick={toggleSidebar} sx={{ fontSize: "3rem" }}>
-            <MenuIcon fontSize="inherit" />
-          </IconButton>
-          <img src={Logo} alt="Logo" style={{ width: "120px", height: "60px" }} />
-        </Box>
+  const navLinks = [
+    { label: "Home", path: "/home" },
+    { label: "About", path: "/about" },
+    { label: "Contact", path: "/contact" },
+    { label: "Register", path: "/register" },
+    { label: "Login", path: "/login" },
+    { label: "Donate", path: "/donete" },
+  ];
 
-        {/* Center: Search Bar */}
-        <Box
+  return (
+    <>
+      <AppBar
+        position="fixed"
+        sx={{
+          backgroundColor: "#000",
+          color: "#fff",
+          height: 120,
+          boxShadow: "none",
+          zIndex: 1000,
+          transition: "width 0.3s",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Toolbar
           sx={{
-            backgroundColor: "#f1f1f1",
-            borderRadius: "5px",
-            px: 2,
-            py: 1,
             display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
-            width: "15%",
+            height: "100%",
           }}
         >
-          <SearchIcon sx={{ mr: 1 }} />
-          <InputBase placeholder="Search..." fullWidth />
-        </Box>
+          {/* Logo + Title */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
+            <img src={Logo} alt="Logo" style={{ height: "70px" }} />
+            <p style={{ fontSize: "20px" }}>శ్రీ శక్తిపీఠ కోటి లింగ క్షేత్రం</p>
+          </Box>
 
-        {/* Right Side: Links, Notification, and Profile */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
-          {[
-           { label: "Home", path: "/dashboard/home" },
-           { label: "Add Task", path: "/dashboard/add-task" },
-           { label: "My Task", path: "/dashboard/my-tasks" },
-           { label: "My Bids", path: "/dashboard/my-bids" },
-           { label: "Filter", path: "/dashboard/filters" },
-          ].map((item) => (
-            <Typography
-            key={item.path}
-            onClick={() => handleNavigation(item.path)}
-            sx={{
-              cursor: "pointer",
-              fontWeight: "bold", // Always bold
-              color: location.pathname === item.path ? "#1B88CA" : "black", // Active color
-              fontSize: "1 rem",
-              transition: "color 0.3s ease",
-            }}
-          >
-            {item.label}
-          </Typography>
-          
+          {/* Navigation + Avatar/Chip */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
+            {navLinks.map((item) => (
+              <Typography
+                key={item.path}
+                onClick={() => handleNavigation(item.path)}
+                sx={{
+                  cursor: "pointer",
+                  color: location.pathname === item.path ? "#FFD700" : "#fff",
+                  fontSize: "1.2rem",
+                  transition: "color 0.3s ease",
+                  "&:hover": {
+                    color: "#FFD700",
+                  },
+                
+                }}
+              >
+                {item.label}
+              </Typography>
+            ))}
 
-          ))}
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="error">
-              <NotificationsIcon sx={{ fontSize: "2rem" }} />
-            </Badge>
-          </IconButton>
-          <Avatar alt="Profile" src="/path/to/profile.jpg" sx={{ width: 50, height: 50 }} />
-        </Box>
-      </Toolbar>
-    </AppBar>
+            {/* Profile Chip or Avatar */}
+            {userData ? (
+              <Chip
+                label={userData?.userName || "Profile"}
+                avatar={
+                  <Avatar
+                    src={
+                      userData?.image
+                        ? `http://localhost:3001/storage/userdp/${userData.profilePic}`
+                        : ""
+                    }
+                    alt="Profile"
+                    sx={{ width: 40, height: 40 }}
+                  />
+                }
+                onClick={handleProfileNavigate}
+                variant="outlined"
+                sx={{ cursor: "pointer", backgroundColor: "white" }}
+              />
+            ) : (
+              <Avatar sx={{ bgcolor: "gray" }} />
+            )}
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {/* Content space */}
+      <Box sx={{ pt: "130px", backgroundColor: "#000", color: "#fff", minHeight: "100vh" }}>
+        <Outlet />
+      </Box>
+    </>
   );
 };
 
