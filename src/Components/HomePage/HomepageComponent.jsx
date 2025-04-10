@@ -15,6 +15,7 @@ import Image1 from "../../Images/Kotilinga Temple Renders-6.jpg";
 import Image2 from "../../Images/Kotilinga Temple Renders-31.jpg";
 import Image3 from "../../Images/Kotilinga Temple Renders-34.jpg";
 import donationImg from "../../Images/Kotilinga Temple Renders-2.jpg"; // Replace with your image path
+import Footer from '../../Components/Footer/Footer'; 
 
 // import Image4 from "../../Images/Kotilinga Temple Renders-34.jpg"
 
@@ -174,6 +175,7 @@ function HomepageComponent() {
       </div>
 
       <WhyUsSection />
+      <Footer/>
     </div>
   );
 }
@@ -252,5 +254,6 @@ const WhyUsSection = () => {
         </div>
       </div>
     </section>
+
   );
 };

@@ -57,7 +57,7 @@ const RegisterBanner = () => {
             px: 2,
           }}
         >
-          <Typography variant="h2" sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', sm: '3rem', md: '4rem' } }}>
+          <Typography variant="h2" sx={{ fontWeight: 'semibold', fontSize: { xs: '2rem', sm: '3rem', md: '4rem' } }}>
             Register
           </Typography>
           <Typography variant="h6" sx={{ maxWidth: '800px', mt: 2 }}>
