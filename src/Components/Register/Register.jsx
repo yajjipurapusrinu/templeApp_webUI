@@ -27,6 +27,8 @@ const RegisterForm = () => {
     email:'',
     userId:'',
     password: '',
+    profilePic: null,
+    donateNumber: '',
   });
 
   const handleChange = (e) => {
@@ -54,6 +56,8 @@ const RegisterForm = () => {
         email: '',
         userId: '',
         password: '',
+        profilePic: null,
+      donateNumber: '',
       });
     } catch (error) {
       console.error('Registration failed:', error);
@@ -81,7 +85,7 @@ const RegisterForm = () => {
         backgroundColor: 'black',
         minHeight: '100vh',
         py: 4,
-        px: 2,
+        px: 4,
         color: 'white',
         display: 'flex',
         justifyContent: 'center',
@@ -154,25 +158,26 @@ const RegisterForm = () => {
           sx={textFieldStyles}
         />
 
-        <TextField
-          label="Date of Birth"
-          type="date"
-          name="dob"
-          value={formData.dob}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{ shrink: true, style: { color: 'white' } }}
-          InputProps={{
-            style: { color: 'white', height: '56px' },
-            sx: {
-              '&::-webkit-calendar-picker-indicator': {
-                filter: 'invert(1)',
-              },
-            },
-          }}
-          sx={textFieldStyles}
-        />
+<TextField
+  label="Date of Birth"
+  type="date"
+  name="dob"
+  value={formData.dob}
+  onChange={handleChange}
+  fullWidth
+  margin="normal"
+  InputLabelProps={{ shrink: true, style: { color: 'white' } }}
+  InputProps={{
+    style: { color: 'white', height: '56px' },
+  }}
+  sx={{
+    ...textFieldStyles,
+    '& input[type="date"]::-webkit-calendar-picker-indicator': {
+      filter: 'invert(1)',
+    },
+  }}
+/>
+
 
         <FormControl fullWidth margin="normal" sx={textFieldStyles}>
           <InputLabel sx={{ color: 'white' }}>Marital Status</InputLabel>
@@ -226,6 +231,34 @@ const RegisterForm = () => {
           sx={textFieldStyles}
         />
 
+        {/* Donate Number */}
+        <TextField
+          label="Donate Number"
+          name="donateNumber"
+          value={formData.donateNumber || ''}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          InputLabelProps={{ style: { color: 'white' } }}
+          InputProps={{ style: { color: 'white', height: '56px' } }}
+          sx={textFieldStyles}
+        />
+
+        {/* Profile Image Upload */}
+        <Box sx={{ mt: 2, mb: 2 }}>
+          <Typography sx={{ color: 'white', mb: 1 }}>Upload Profile Image</Typography>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              setFormData((prev) => ({
+                ...prev,
+                profilePic: e.target.files[0],
+              }));
+            }}
+            style={{ color: 'white' }}
+          />
+        </Box>
 
 
 <TextField

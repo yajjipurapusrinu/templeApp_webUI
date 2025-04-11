@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Shiva from "../../Images/lord-shiva.jpg";
 import ShivaLinga from "../../Images/shiva-linga.jpg";
-import TempleSignificance from "../../Images/Kotilinga Temple Logo 1.png";
+import TempleSignificance from "../../Images/freepik__dolly-zoom-a-beautifully-adorned-shiva-lingam-sits__93543.mp4";
 import Image1 from "../../Images/Kotilinga Temple Renders-6.jpg";
 import Image2 from "../../Images/Kotilinga Temple Renders-31.jpg";
 import Image3 from "../../Images/Kotilinga Temple Renders-34.jpg";

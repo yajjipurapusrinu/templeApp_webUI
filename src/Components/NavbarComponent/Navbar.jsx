@@ -1,143 +1,6 @@
-// // Navbar.jsx
-// import { useNavigate, useLocation, Outlet } from "react-router-dom";
-// import React, { useState, useEffect } from "react";
-// import {
-//   AppBar,
-//   Toolbar,
-//   Typography,
-//   Box,
-//   Avatar,
-//   Chip,
-// } from "@mui/material";
-
-
-// import Logo from "../../Images/Kotilinga Temple Logo 1.png";
-
-// const Navbar = () => {
-//   const navigate = useNavigate();
-//   const location = useLocation();
-//   const [userData, setUserData] = useState(localStorage.getItem("userData"));
-
-//   useEffect(() => {
-//     const storedUserData = localStorage.getItem("userData");
-//     setUserData(storedUserData);
-//   }, []);
-
-// console.log("++++++++++++++++>",userData)
-
-//   const handleLogout = () => {
-//     localStorage.removeItem("user");
-//     localStorage.removeItem("token");
-//     setUserData(null);
-//     navigate("/home");
-//   };
-
-//   const handleProfileNavigate = () => {
-//     navigate("/profile");
-//   };
-
-//   const handleNavigation = (path) => {
-//     navigate(path);
-//   };
-
-//   const navLinks = [
-//     { label: "Home", path: "/home" },
-//     { label: "About", path: "/about" },
-//     { label: "Contact", path: "/contact" },
-//     { label: "Register", path: "/register" },
-//     { label: "Login", path: "/login" },
-//     { label: "Donate", path: "/donete" },
-//   ];
-
-//   return (
-//     <>
-//       <AppBar
-//         position="absolute"
-//         sx={{
-//           backgroundColor: "transparent",
-//           color: "#fff",
-//           height: 120,
-//           boxShadow: "none",
-//           zIndex: 1000,
-//           transition: "width 0.3s",
-//           display: "flex",
-//           justifyContent: "center",
-//         }}
-//       >
-//         <Toolbar
-//           sx={{
-//             display: "flex",
-//             justifyContent: "space-between",
-//             alignItems: "center",
-//             height: "100%",
-//           }}
-//         >
-//           {/* Logo + Title */}
-//           <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
-//             <img src={Logo} alt="Logo" style={{ height: "70px" }} />
-//             <p style={{ fontSize: "20px" }}>శ్రీ శక్తిపీఠ కోటి లింగ క్షేత్రం</p>
-//           </Box>
-
-//           {/* Navigation + Avatar/Chip */}
-//           <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
-//             {navLinks.map((item) => (
-//               <Typography
-//                 key={item.path}
-//                 onClick={() => handleNavigation(item.path)}
-//                 sx={{
-//                   cursor: "pointer",
-//                   color: location.pathname === item.path ? "#FFD700" : "#fff",
-//                   fontSize: "1.2rem",
-//                   transition: "color 0.3s ease",
-//                   "&:hover": {
-//                     color: "#FFD700",
-//                   },
-                
-//                 }}
-//               >
-//                 {item.label}
-//               </Typography>
-//             ))}
-
-//             {/* Profile Chip or Avatar */}
-//             {userData ? (
-//               <Chip
-//                 label={userData?.userName || "Profile"}
-//                 avatar={
-//                   <Avatar
-//                     src={
-//                       userData?.image
-//                         ? `http://localhost:3001/storage/userdp/${userData.profilePic}`
-//                         : ""
-//                     }
-//                     alt="Profile"
-//                     sx={{ width: 40, height: 40 }}
-//                   />
-//                 }
-//                 onClick={handleProfileNavigate}
-//                 variant="outlined"
-//                 sx={{ cursor: "pointer", backgroundColor: "white" }}
-//               />
-//             ) : (
-//               <Avatar sx={{ bgcolor: "gray" }} />
-//             )}
-//           </Box>
-//         </Toolbar>
-//       </AppBar>
-
-//       {/* Content space */}
-//       <Box sx={{ pt: "130px", backgroundColor: "#000", color: "#fff", minHeight: "100vh" }}>
-//         <Outlet />
-//       </Box>
-//     </>
-//   );
-// };
-
-// export default Navbar;
-
-
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { Button } from '@mui/material';
 import {
   AppBar,
   Toolbar,
@@ -152,19 +15,15 @@ import Logo from "../../Images/Kotilinga Temple Logo 1.png";
 const Navbar = ({ isHomePage }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [userData, setUserData] = useState(localStorage.getItem("userData"));
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedUserData = localStorage.getItem("userData");
-    setUserData(storedUserData);
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    setUserData(null);
-    navigate("/home");
-  };
+      const storedUser = localStorage.getItem("userData");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    }, []);
+ 
 
   const handleProfileNavigate = () => {
     navigate("/profile");
@@ -179,8 +38,8 @@ const Navbar = ({ isHomePage }) => {
     { label: "About", path: "/about" },
     { label: "Contact", path: "/contact" },
     { label: "Register", path: "/register" },
-    { label: "Login", path: "/login" },
-    { label: "Donate", path: "/donete" },
+    // { label: "Login", path: "/login" },
+    // { label: "Donate", path: "/donete" },
   ];
 
   return (
@@ -209,11 +68,11 @@ const Navbar = ({ isHomePage }) => {
           {/* Logo + Title */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
             <img src={Logo} alt="Logo" style={{ height: "70px" }} />
-            <p style={{ fontSize: "20px" }}>శ్రీ శక్తిపీఠ కోటి లింగ క్షేత్రం</p>
+            <h2> Sri Shaktipeetha Koti Lenga Kshethram</h2>
           </Box>
 
           {/* Navigation + Avatar/Chip */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
             {navLinks.map((item) => (
               <Typography
                 key={item.path}
@@ -233,14 +92,14 @@ const Navbar = ({ isHomePage }) => {
             ))}
 
             {/* Profile Chip or Avatar */}
-            {userData ? (
+            {user ? (
               <Chip
-                label={userData?.userName || "Profile"}
+                label={user?.userName || "Profile"}
                 avatar={
                   <Avatar
                     src={
-                      userData?.image
-                        ? `http://localhost:3001/storage/userdp/${userData.profilePic}`
+                      user?.image
+                        ? `http://localhost:3001/storage/userdp/${user.profilePic}`
                         : ""
                     }
                     alt="Profile"
@@ -249,11 +108,37 @@ const Navbar = ({ isHomePage }) => {
                 }
                 onClick={handleProfileNavigate}
                 variant="outlined"
-                sx={{ cursor: "pointer", backgroundColor: "white" }}
+                sx={{ cursor: "pointer", backgroundColor: "white" , "&:hover": {
+                  color: "#FFD700",
+                },}}
               />
             ) : (
               <Avatar sx={{ bgcolor: "gray" }} />
             )}
+
+
+<Button
+      onClick={() => navigate('/donete')}
+      variant="contained"
+      sx={{
+        backgroundColor: 'white',
+        color: 'black',
+        width: '8rem', // 52 * 0.25rem = 13rem
+        height: '3rem', // 20 * 0.25rem = 5rem
+        padding: '10px 20px',
+        borderRadius: '5px',
+        fontWeight: 'bold',
+        fontSize: '17px',
+        boxShadow: 3,
+        '&:hover': {
+          backgroundColor: '#FFD700', // equivalent to Tailwind's gray-100
+        },
+      }}
+    >
+      Donate
+    </Button>
+
+
           </Box>
         </Toolbar>
       </AppBar>
