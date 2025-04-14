@@ -29,7 +29,9 @@ const RegisterForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/user/login', formData);
+      // const response = await axios.post('http://localhost:3001/user/login', formData);
+      const response = await axios.post('https://temple.signaturecutz.in/user/login', formData);
+
       const { token, user } = response.data.data;
       console.log("------------->",response.data.data)
 console.log("token :",token);
